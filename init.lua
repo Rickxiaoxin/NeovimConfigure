@@ -81,6 +81,8 @@ vim.o.confirm = true
 
 -- [[ Set up keymaps ]] See `:h vim.keymap.set()`, `:h mapping`, `:h keycodes`
 
+-- Visual Block Mode
+vim.keymap.set({'n', 'x'}, '<C-Q>', '<C-V>', { noremap = true, silent = true, desc = 'Enter visual block mode' })
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
