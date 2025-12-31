@@ -3,7 +3,11 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "echasnovski/mini.icons" },
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      options = {
+        globalstatus = true,
+      },
+    },
     config = function(_, opts)
       -- mini.icons
       require("mini.icons").setup()
