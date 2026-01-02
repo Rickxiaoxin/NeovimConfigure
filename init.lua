@@ -65,6 +65,9 @@ vim.keymap.set({ "n" }, "<A-j>", "<C-w>j")
 vim.keymap.set({ "n" }, "<A-k>", "<C-w>k")
 vim.keymap.set({ "n" }, "<A-l>", "<C-w>l")
 
+-- Map <Esc> to nohlsearch command
+vim.keymap.set({ "n" }, "<Esc>", "<Cmd>nohlsearch<CR>")
+
 -- [[ Basic Autocommands ]].
 -- See `:h lua-guide-autocommands`, `:h autocmd`, `:h nvim_create_autocmd()`
 

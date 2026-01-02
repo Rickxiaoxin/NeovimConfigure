@@ -26,7 +26,6 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "plugins" },
-    { dir = vim.env.VIMRUNTIME .. "/pack/dist/opt/nohlsearch", event = "BufReadPre" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
