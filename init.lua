@@ -39,7 +39,7 @@ vim.o.smartcase = true
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 5
 
 -- Show <tab> and trailing spaces
 vim.o.list = true
@@ -64,6 +64,16 @@ vim.keymap.set({ "n" }, "<A-h>", "<C-w>h")
 vim.keymap.set({ "n" }, "<A-j>", "<C-w>j")
 vim.keymap.set({ "n" }, "<A-k>", "<C-w>k")
 vim.keymap.set({ "n" }, "<A-l>", "<C-w>l")
+
+-- Map <A-up>, <A-down>, <A-left>, <A-right> to resize the window
+vim.keymap.set({ "t", "i" }, "<A-Up>", "<Cmd>resize -1<CR>")
+vim.keymap.set({ "t", "i" }, "<A-Down>", "<Cmd>resize +1<CR>")
+vim.keymap.set({ "t", "i" }, "<A-Left>", "<Cmd>vertical resize -1<CR>")
+vim.keymap.set({ "t", "i" }, "<A-Right>", "<Cmd>vertical resize +1<CR>")
+vim.keymap.set({ "n" }, "<A-Up>", "<Cmd>resize -1<CR>")
+vim.keymap.set({ "n" }, "<A-Down>", "<Cmd>resize +1<CR>")
+vim.keymap.set({ "n" }, "<A-Left>", "<Cmd>vertical resize -1<CR>")
+vim.keymap.set({ "n" }, "<A-Right>", "<Cmd>vertical resize +1<CR>")
 
 -- Map <Esc> to nohlsearch command
 vim.keymap.set({ "n" }, "<Esc>", "<Cmd>nohlsearch<CR>")
