@@ -6,13 +6,13 @@ return {
     build = ":TSUpdate",
     event = "VeryLazy",
     opts = {},
-  },
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "tree-sitter-cli",
-      },
-    },
+    config = function(_, opts)
+      local mr = require("mason-registry")
+      if not mr.is_installed("tree-sitter-cli") then
+        local p = mr.get_package("tree-sitter-cli")
+        p:install()
+      end
+      require("nvim-treesitter").setup(opts)
+    end,
   },
 }
