@@ -11,6 +11,7 @@ return {
         "lua_ls",
         "basedpyright",
         "texlab",
+        "clangd",
       },
     },
     config = vim.schedule_wrap(function(_, opts)
@@ -28,6 +29,7 @@ return {
       ensure_installed = {
         "stylua",
         "ruff",
+        "clang-format",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}

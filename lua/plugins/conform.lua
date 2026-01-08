@@ -9,6 +9,8 @@ return {
         lua = { "stylua" },
         python = { "ruff_format" },
         tex = { "latexindent" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
       },
     },
   },
