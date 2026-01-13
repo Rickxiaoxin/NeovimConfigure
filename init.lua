@@ -1,7 +1,10 @@
+-- [[ Set global variable ]]
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- [[ Setting options ]] See `:h vim.o`
 -- NOTE: You can change these options as you wish!
@@ -11,25 +14,6 @@ vim.g.mapleader = " "
 
 -- Print the line number in front of each line
 vim.o.number = true
-
--- Use relative line numbers, so that it is easier to jump with j, k. This will affect the 'number'
--- option above, see `:h number_relativenumber`
-vim.o.relativenumber = true
-
--- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
--- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
--- See `:help 'clipboard'`
-vim.api.nvim_create_autocmd("UIEnter", {
-  callback = function()
-    vim.o.clipboard = "unnamedplus"
-  end,
-})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnu = args.buf })
-  end,
-})
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
@@ -48,6 +32,7 @@ vim.o.list = true
 -- instead raise a dialog asking if you wish to save the current file(s) See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Conform.nvim configuration
 vim.opt.formatexpr = "v:lua.require('confrm').formatexpr()"
 
 -- [[ Set up keymaps ]] See `:h vim.keymap.set()`, `:h mapping`, `:h keycodes`
@@ -81,6 +66,23 @@ vim.keymap.set({ "n" }, "<Esc>", "<Cmd>nohlsearch<CR>")
 -- [[ Basic Autocommands ]].
 -- See `:h lua-guide-autocommands`, `:h autocmd`, `:h nvim_create_autocmd()`
 
+-- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
+-- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
+-- See `:help 'clipboard'`
+vim.api.nvim_create_autocmd("UIEnter", {
+  callback = function()
+    vim.o.clipboard = "unnamedplus"
+  end,
+})
+
+-- Set conform.nvim to automatically format before buffer is written
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnu = args.buf })
+  end,
+})
+
 -- Highlight when yanking (copying) text.
 -- Try it with `yap` in normal mode. See `:h vim.hl.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -93,11 +95,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- [[ Create user commands ]]
 -- See `:h nvim_create_user_command()` and `:h user-commands`
 
--- Create a command `:GitBlameLine` that print the git blame for the current line
-vim.api.nvim_create_user_command("GitBlameLine", function()
-  local line_number = vim.fn.line(".") -- Get the current line number. See `:h line()`
-  local filename = vim.api.nvim_buf_get_name(0)
-  print(vim.fn.system({ "git", "blame", "-L", line_number .. ",+1", filename }))
-end, { desc = "Print the git blame for the current line" })
-
+-- Load lazy.nvim
 require("config.lazy")
