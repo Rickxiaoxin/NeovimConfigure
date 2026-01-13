@@ -63,6 +63,9 @@ vim.keymap.set({ "n" }, "<A-Right>", "<Cmd>vertical resize +1<CR>")
 -- Map <Esc> to nohlsearch command
 vim.keymap.set({ "n" }, "<Esc>", "<Cmd>nohlsearch<CR>")
 
+-- LSP keymaps
+vim.keymap.set({ "n" }, "grd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+
 -- [[ Basic Autocommands ]].
 -- See `:h lua-guide-autocommands`, `:h autocmd`, `:h nvim_create_autocmd()`
 
