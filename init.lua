@@ -35,6 +35,10 @@ vim.o.confirm = true
 -- Conform.nvim configuration
 vim.opt.formatexpr = "v:lua.require('confrm').formatexpr()"
 
+-- Disable automatically fold
+vim.o.foldenable = false
+vim.o.foldlevel = 99
+
 -- [[ Set up keymaps ]] See `:h vim.keymap.set()`, `:h mapping`, `:h keycodes`
 
 -- Use <Esc> to exit terminal mode

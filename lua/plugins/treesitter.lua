@@ -58,6 +58,24 @@ return {
           ts.install(need_installed, { summary = true })
         end)
       end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ev)
+          local filetype = vim.api.nvim_get_option_value("filetype", { buf = ev.buf })
+          local lang = vim.treesitter.language.get_lang(filetype)
+          if not vim.tbl_contains(opts.ensure_installed, lang) then
+            return
+          end
+
+          -- syntax highlighting, provided by Neovim
+          vim.treesitter.start(ev.buf)
+          -- folds, provided by Neovim
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldmethod = "expr"
+          -- indentation, provided by nvim-treesitter
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
     end,
   },
 }
