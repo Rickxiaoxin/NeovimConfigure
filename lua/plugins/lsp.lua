@@ -30,6 +30,7 @@ return {
         "stylua",
         "ruff",
         "clang-format",
+        "tex-fmt",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}

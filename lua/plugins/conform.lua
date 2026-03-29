@@ -8,7 +8,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
-        tex = { "latexindent" },
+        tex = { "tex-fmt" },
         c = { "clang-format" },
         cpp = { "clang-format" },
       },
